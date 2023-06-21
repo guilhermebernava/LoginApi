@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "drz7xQzyLdZXw8qvAo+CJXqbap8wRe96hO2jpRaT7nQ=",
+  "Source": "SecApi",
+  "BasePath": "_content/SecApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
