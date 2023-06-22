@@ -4,11 +4,11 @@ using System.Text.Json;
 
 namespace SecApi.Middlewares
 {
-    public class GlobalErrorHandlingMiddleware
+    public class GlobalErrorMiddleware
     {
         private readonly RequestDelegate _next;
 
-        public GlobalErrorHandlingMiddleware(RequestDelegate next)
+        public GlobalErrorMiddleware(RequestDelegate next)
         {
             _next = next;
         }
