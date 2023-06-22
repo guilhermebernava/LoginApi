@@ -4,8 +4,9 @@ namespace Infra.Commands.User
 {
     public class UserCreateCommand : Request
     {
-        public string? UserName { get; init; }
-        public string Password { get; init; }
-        public string Email { get; init; }
+        public string? UserName { get; set; }
+        public bool TwoFactor { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
     }
 }

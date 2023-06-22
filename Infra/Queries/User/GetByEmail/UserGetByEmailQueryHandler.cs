@@ -15,8 +15,8 @@ namespace Infra.Commands.User
 
         public async Task<ResponseDto> Handle(UserGetByEmailQuery request, CancellationToken cancellationToken)
         {
-            var list = await _userRepository.GetByEmailAsync(request.Email);
-            return new ResponseDto(list);
+            var user = await _userRepository.GetByEmailAsync(request.Email);
+            return new ResponseDto(user);
         }
     }
 }

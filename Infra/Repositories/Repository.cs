@@ -22,11 +22,16 @@ namespace Infra.Repositories
             try
             {
                 await _dbSet.AddAsync(entity);
-                await SaveAsync();
+                var saved = await SaveAsync();
+
+                if (!saved)
+                {
+                    throw new NotSavedException("Not saved");
+                }
             }
             catch (Exception ex)
             {
-                throw new RepositoryException(ex.ToString());
+                throw new DbException(ex.Message);
             }
         }
 
@@ -35,12 +40,23 @@ namespace Infra.Repositories
             try
             {
                 var entity = await GetByIdAsync(Id);
+
+                if (entity == null)
+                {
+                    throw new NotFoundException("Not found");
+                }
+
                 _dbSet.Remove(entity);
-                await SaveAsync();
+                var saved = await SaveAsync();
+
+                if (!saved)
+                {
+                    throw new NotSavedException("Not saved");
+                }
             }
             catch (Exception ex)
             {
-                throw new RepositoryException(ex.ToString());
+                throw new DbException(ex.Message);
             }
         }
 
@@ -53,7 +69,7 @@ namespace Infra.Repositories
             }
             catch (Exception ex)
             {
-                throw new RepositoryException(ex.ToString());
+                throw new Exception(ex.ToString());
             }
         }
 
@@ -62,23 +78,19 @@ namespace Infra.Repositories
             try
             {
                 var entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == Id);
+
                 if (entity == null)
                 {
-                    throw new RepositoryException("Not found");
+                    throw new NotFoundException($"Id {Id} was not found");
                 }
 
                 return entity;
             }
             catch (Exception ex)
             {
-                throw new RepositoryException(ex.ToString());
+                throw new DbException(ex.ToString());
             }
 
-        }
-
-        public async Task SaveAsync()
-        {
-            await _db.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(T entity)
@@ -86,12 +98,23 @@ namespace Infra.Repositories
             try
             {
                 _dbSet.Update(entity);
-                await SaveAsync();
+                var saved = await SaveAsync();
+
+                if (!saved)
+                {
+                    throw new NotSavedException("Not saved");
+                }
             }
             catch (Exception ex)
             {
-                throw new RepositoryException(ex.ToString());
+                throw new DbException(ex.Message);
             }
         }
+
+        public async Task<bool> SaveAsync()
+        {
+            return await _db.SaveChangesAsync() == 1 ? true : false;
+        }
+
     }
 }

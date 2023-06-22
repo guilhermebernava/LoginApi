@@ -16,7 +16,7 @@ namespace Infra.Commands.User
 
         public async Task<ResponseDto> Handle(UserCreateCommand request, CancellationToken cancellationToken)
         {
-            var entity = new AppUser(request.Email, request.Password, request.UserName);
+            var entity = new AppUser(request.Email, request.Password, request.TwoFactor,request.UserName);
             await _userRepository.AddAsync(entity);
             return new ResponseDto();
         }

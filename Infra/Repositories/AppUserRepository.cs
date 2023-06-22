@@ -1,13 +1,12 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
+using Domain.Services;
 using Infra.Context;
 using Infra.Exceptions;
-using Infra.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
-using System.Security.Authentication;
 using System.Security.Claims;
 
 namespace Infra.Repositories
@@ -26,9 +25,8 @@ namespace Infra.Repositories
 
             if (user == null)
             {
-                throw new RepositoryException($"Not found this User - {email}");
+                throw new NotFoundException($"Not found any user with this email - {email}");
             }
-
             return user;
         }
 
@@ -38,17 +36,26 @@ namespace Infra.Repositories
 
             if (existUser == null)
             {
-                throw new RepositoryException("Not found user");
+                throw new NotFoundException($"Not found any user with this email - {email}");
             }
 
-            if (!PasswordServices.CheckPassword(password, existUser.Password))
+            if (PasswordServices.VerifyPassword(password, existUser.Password) == false)
             {
-                throw new AuthenticationException("Email or Password is Invalid");
+                throw new UnauthorizedException("Email or Password was invalid");
+            }
+
+            if (existUser.TwoFactor)
+            {
+                return GenerateCode();
             }
 
             return GenerateToken();
         }
 
+        private string GenerateCode()
+        {
+            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+        }
 
         private string GenerateToken()
         {

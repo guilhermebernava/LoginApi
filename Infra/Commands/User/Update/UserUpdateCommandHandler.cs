@@ -18,12 +18,8 @@ namespace Infra.Commands.User
         {
             var entity = await _userRepository.GetByIdAsync(request.Id);
 
-            if(entity == null)
-            {
-                throw new RepositoryException($"Not found this User - {request.Id}");
-            }
-
             entity.Email = request.Email;
+            entity.TwoFactor = request.TwoFactor;
             entity.Name = request.Username;
 
             await _userRepository.UpdateAsync(entity);

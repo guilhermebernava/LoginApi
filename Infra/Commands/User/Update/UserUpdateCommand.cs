@@ -6,6 +6,7 @@ namespace Infra.Commands.User
     {
         public Guid Id { get; init; }
         public string Email { get; init; }
+        public bool TwoFactor { get; init; }
         public string Username { get; init; }
     }
 }

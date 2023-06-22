@@ -1,4 +1,4 @@
-﻿using Infra.Services;
+﻿using Domain.Services;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
@@ -8,27 +8,29 @@ namespace Domain.Entities
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Name { get; set; }
+        public string? Name { get; set; }
         public bool TwoFactor { get; set; }
 
-        public AppUser(string email, string password)
+        public AppUser(string email, string password, bool twoFactor)
         {
             CheckEmail(email);
             Email = email;
-            Password = PasswordServices.ConvertPassword(password);
+            Password = PasswordServices.EncryptPassword(password);
+            TwoFactor = twoFactor;
         }
 
-        public AppUser(string email, string password,string? name)
+        public AppUser(string email, string password,bool twoFactor,string? name)
         {
             CheckEmail(email);
             Email = email;
+            TwoFactor = twoFactor;
             Name = name ?? "";
-            Password = PasswordServices.ConvertPassword(password);
+            Password = PasswordServices.EncryptPassword(password);
         }
 
         private void CheckEmail(string email)
         {
-            string checkEmail = "[0-9 a-z A-Z]{1-100}@[a-z A-Z 0-9]{2-50}.[a-z A-Z]{1-10}";
+            string checkEmail = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
             if (!Regex.IsMatch(email, checkEmail))
             {
