@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace Infra.Extensions
 {
-    public static class CacheHelper
+    public static class _CacheHelper
     {
         public static async Task SetRecordAsync<T>(this IDistributedCache cache,
                                                    string recordId,
