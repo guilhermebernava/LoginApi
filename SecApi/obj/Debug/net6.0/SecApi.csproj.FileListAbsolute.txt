@@ -53,3 +53,6 @@ C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\obj\Debug\net6.0\r
 C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\obj\Debug\net6.0\SecApi.pdb
 C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\obj\Debug\net6.0\SecApi.genruntimeconfig.cache
 C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\obj\Debug\net6.0\ref\SecApi.dll
+C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\bin\Debug\net6.0\Microsoft.Extensions.Caching.StackExchangeRedis.dll
+C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+C:\Users\guilh\OneDrive\Documentos\Projects\API\SecApi\SecApi\bin\Debug\net6.0\StackExchange.Redis.dll

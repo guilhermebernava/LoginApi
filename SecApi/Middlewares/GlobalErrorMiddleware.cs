@@ -49,9 +49,9 @@ namespace SecApi.Middlewares
                 status = HttpStatusCode.BadRequest;
                 message = exception.Message;
             }
-            else if (exceptionType == typeof(KeyNotFoundException))
+            else if (exceptionType == typeof(DbException))
             {
-                status = HttpStatusCode.Unauthorized;
+                status = HttpStatusCode.InternalServerError;
                 message = exception.Message;
             }
             else

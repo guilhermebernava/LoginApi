@@ -1,5 +1,6 @@
 using Infra.Commands.User;
 using Infra.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SecApi.Controllers
@@ -15,6 +16,14 @@ namespace SecApi.Controllers
         {
             _mediatorCommand = mediatorCommand;
             _mediatorQuery = mediatorQuery;
+        }
+
+        [HttpGet]
+        [Route("TwoFactor")]
+        public async Task<IActionResult> TwoFactor([FromQuery] string code)
+        {
+            var result = await _mediatorQuery.SendQuery(new UserTwoFactorQuery() { Code = code });
+            return Ok(result);
         }
 
 
@@ -46,7 +55,8 @@ namespace SecApi.Controllers
 
         [HttpGet]
         [Route("GetUserByEmail")]
-        public async Task<IActionResult> GetUserByEmail([FromQuery]UserGetByEmailQuery query)
+        [Authorize]
+        public async Task<IActionResult> GetUserByEmail([FromQuery] UserGetByEmailQuery query)
         {
             var result = await _mediatorQuery.SendQuery(query);
 

@@ -15,6 +15,7 @@ namespace Infra
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserDeleteCommand>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserGetAllQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserGetByEmailQueryHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserTwoFactorQueryHandler>());
         }
     }
 }

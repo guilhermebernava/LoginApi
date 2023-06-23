@@ -1,4 +1,6 @@
-﻿using Domain.Entities;
+﻿using Domain.DTOs;
+using Domain.Entities;
+using Domain.Redis;
 using Domain.Repositories;
 using Domain.Services;
 using Infra.Context;
@@ -14,10 +16,13 @@ namespace Infra.Repositories
     public class UserRepository : Repository<AppUser>, IUserRepository
     {
         private IConfiguration _configuration;
-        public UserRepository(AppDbContext dbContext, IConfiguration configuration) : base(dbContext)
+        private ITwoFactorRedisRepository _twoFactorRedisRepository;
+        public UserRepository(AppDbContext dbContext, IConfiguration configuration, ITwoFactorRedisRepository twoFactorRedisRepository) : base(dbContext)
         {
             _configuration = configuration;
+            _twoFactorRedisRepository = twoFactorRedisRepository;
         }
+
 
         public async Task<AppUser> GetByEmailAsync(string email)
         {
@@ -30,9 +35,10 @@ namespace Infra.Repositories
             return user;
         }
 
-        public async Task<string> LoginAsync(string email, string password)
+        public async Task<LoginDto> LoginAsync(string email, string password)
         {
             var existUser = await GetByEmailAsync(email);
+            var response = new LoginDto();
 
             if (existUser == null)
             {
@@ -46,15 +52,40 @@ namespace Infra.Repositories
 
             if (existUser.TwoFactor)
             {
-                return GenerateCode();
+                var code = await GenerateCode(existUser);
+                response.Code = code;
+                return response;
             }
 
-            return GenerateToken();
+            var token =  GenerateToken();
+            response.Token = token;
+            return response;
         }
 
-        private string GenerateCode()
+        public async Task<string> TwoFactorAsync(string code)
         {
-            return Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            try
+            {
+                var result = await _twoFactorRedisRepository.GetByKey(code);
+
+                if(result == null)
+                {
+                    throw new NotFoundException("Not found this code, invalid code");
+                }
+
+                return GenerateToken();
+            }
+            catch (Exception ex)
+            {
+                throw new RedisException(ex.Message);
+            }
+        }
+
+        private async Task<string> GenerateCode(AppUser user)
+        {
+            var code = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
+            await _twoFactorRedisRepository.Add(code, new AppUserTwoFactor(user.Id, code));
+            return code;
         }
 
         private string GenerateToken()
