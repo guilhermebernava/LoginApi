@@ -33,7 +33,6 @@ namespace Infra.Repositories
         public async Task<LoginDto> LoginAsync(string email, string password)
         {
             var existUser = await GetByEmailAsync(email);
-            var response = new LoginDto();
 
             if (existUser == null)
             {
@@ -44,8 +43,8 @@ namespace Infra.Repositories
             {
                 throw new UnauthorizedException("Email or Password was invalid");
             }
+            var response = new LoginDto(existUser.Id);
 
-            response.UserId = existUser.Id;
 
             if (existUser.TwoFactor)
             {
