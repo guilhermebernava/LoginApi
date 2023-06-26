@@ -2,7 +2,8 @@
 {
     public class LoginDto
     {
-        public string? Code { get; set; }
-        public string? Token { get; set; }
+        public Guid UserId { get; set; }
+        public bool Code { get; set; } = false;
+        public string Token { get; set; } = "";
     }
 }

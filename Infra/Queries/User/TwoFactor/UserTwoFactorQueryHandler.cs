@@ -1,4 +1,4 @@
-﻿using Domain.Repositories;
+﻿using Domain.Redis;
 using Infra.Mediator.Classes;
 using MediatR;
 
@@ -6,17 +6,17 @@ namespace Infra.Commands.User
 {
     public class UserTwoFactorQueryHandler : IRequestHandler<UserTwoFactorQuery, ResponseDto>
     {
-        private IUserRepository _userRepository;
+        private ITwoFactorRedisRepository _twoFactorRedisRepository;
 
-        public UserTwoFactorQueryHandler(IUserRepository userRepository)
+        public UserTwoFactorQueryHandler(ITwoFactorRedisRepository twoFactorRedisRepository)
         {
-            _userRepository = userRepository;
+            _twoFactorRedisRepository = twoFactorRedisRepository;
         }
 
         public async Task<ResponseDto> Handle(UserTwoFactorQuery request, CancellationToken cancellationToken)
         {
-            var list = await _userRepository.TwoFactorAsync(request.Code);
-            return new ResponseDto(list);
+            var token = await _twoFactorRedisRepository.ValidateCode(request.Code);
+            return new ResponseDto(token);
         }
     }
 }

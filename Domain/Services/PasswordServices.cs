@@ -5,11 +5,11 @@ namespace Domain.Services
 {
     public static class PasswordServices
     {
-        private const String strPermutation = "asdaszx51d5asd2a";
-        private const Int32 bytePermutation1 = 0x19;
-        private const Int32 bytePermutation2 = 0x59;
-        private const Int32 bytePermutation3 = 0x17;
-        private const Int32 bytePermutation4 = 0x41;
+        private const string strPermutation = "asdaszx51d5asd2a";
+        private const int bytePermutation1 = 0x19;
+        private const int bytePermutation2 = 0x59;
+        private const int bytePermutation3 = 0x17;
+        private const int bytePermutation4 = 0x41;
 
         public static bool VerifyPassword(string password, string hashPassword)
         {
@@ -19,7 +19,6 @@ namespace Domain.Services
             }
             return false;
         }
-
         public static string EncryptPassword(string strData)
         {
             return Convert.ToBase64String(Encrypt(Encoding.UTF8.GetBytes(strData)));
