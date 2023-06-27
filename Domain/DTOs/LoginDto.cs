@@ -1,13 +1,15 @@
-﻿namespace Domain.DTOs
+﻿using Domain.Entities;
+
+namespace Domain.DTOs
 {
     public class LoginDto
     {
-        public LoginDto(Guid userId)
+        public LoginDto(AppUser user)
         {
-            UserId = userId;
+            User = user;
         }
 
-        public Guid UserId { get; set; }
+        public AppUser User { get; set; }
         public bool Code { get; set; } = false;
         public string Token { get; set; } = "";
 

@@ -19,7 +19,7 @@ namespace Infra.Utils
                     newMail.From = new MailAddress("guilhermebernava00@gmail.com", "SEC - API");
                     newMail.To.Add(email);
                     newMail.Subject = "Two Factor Login Acess";
-                    newMail.IsBodyHtml = true; newMail.Body = $"<h1>Acess this link to login in your account <a href=\"{code}\">{code}</a></h1>";
+                    newMail.IsBodyHtml = true; newMail.Body = $"<h1>Here is your code!</h1>\n<h2>Use this code to login in your account</h2>\n<h3>{code}</h3>";
 
                     client.EnableSsl = true;
                     client.Port = 587;

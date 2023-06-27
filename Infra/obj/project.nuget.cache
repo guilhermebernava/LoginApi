@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "zL7Ep/yZAnEDBX7JOHwpAHEtFrSkUCh6CuPrlqc0TJmPrZh/eyQUqBr47tTAPWa9JN4HF8+2f+IutwCWlm4+Cg==",
+  "dgSpecHash": "x9C+84PBQsiN5yfvdJ60VWgWXHUVsCRtEAvwYjdu2jl1ONj/7YjBFxoPvmx+oGzDaIIdhB2pX77lWKg9RXRH4Q==",
   "success": true,
-  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Projects\\API\\SecApi\\Infra\\Infra.csproj",
+  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Projects\\SecApi\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guilh\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",

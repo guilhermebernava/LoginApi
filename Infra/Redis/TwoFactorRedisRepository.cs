@@ -18,12 +18,12 @@ namespace Infra.Redis
             _configuration = configuration;
         }
 
-        public async Task<string> GenerateCode(Guid userId)
+        public async Task<string> GenerateCode(AppUser user)
         {
             try
             {
                 var code = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
-                await Add(code, new AppUserTwoFactor(userId, code));
+                await Add(code, new AppUserTwoFactor(user, code));
                 return code;
             }
             catch (Exception ex)
@@ -43,7 +43,7 @@ namespace Infra.Redis
                     throw new NotFoundException("Not found anything with this code");
                 }
 
-                return JwtUtils.GenerateToken(_configuration);
+                return JwtUtils.GenerateToken(_configuration,result.User);
             }
             catch (Exception ex)
             {

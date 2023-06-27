@@ -2,8 +2,9 @@
 
 namespace Infra.Commands.User
 {
-    public class UserGetByEmailQuery : Request
+    public class UserPasswordUpdateCommand : Request
     {
+        public string NewPassword { get; init; }
         public string Email { get; set; }
     }
 }

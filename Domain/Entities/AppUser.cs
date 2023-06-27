@@ -1,5 +1,6 @@
 ﻿using Domain.Services;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
 namespace Domain.Entities
@@ -8,7 +9,7 @@ namespace Domain.Entities
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string? Name { get; set; }
+        public string Name { get; set; } = "";
         public bool TwoFactor { get; set; }
 
         public AppUser(string email, string password, bool twoFactor)
@@ -19,12 +20,13 @@ namespace Domain.Entities
             TwoFactor = twoFactor;
         }
 
-        public AppUser(string email, string password,bool twoFactor,string? name)
+        [JsonConstructor]
+        public AppUser(string email, string password,bool twoFactor,string name)
         {
             CheckEmail(email);
             Email = email;
             TwoFactor = twoFactor;
-            Name = name ?? "";
+            Name = name;
             Password = PasswordServices.EncryptPassword(password);
         }
 

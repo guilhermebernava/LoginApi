@@ -1,4 +1,6 @@
 using Infra;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using SecApi.Injectors;
 using SecApi.Middlewares;
 using StackExchange.Redis;
@@ -24,6 +26,17 @@ builder.Services.AddCQRS();
 builder.Services.AddDbContext(builder);
 builder.Services.AddConfiguredSwagger();
 
+builder.Services.AddAuthorization(options =>
+{
+    var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
+         JwtBearerDefaults.AuthenticationScheme);
+
+    defaultAuthorizationPolicyBuilder =
+        defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+
+    options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -35,6 +48,5 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<GlobalErrorMiddleware>();
 app.UseHttpsRedirection();
 app.UseAuthorization();
-app.UseAuthentication();
 app.MapControllers();
 app.Run();

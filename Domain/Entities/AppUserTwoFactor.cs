@@ -2,12 +2,12 @@
 {
     public class AppUserTwoFactor : Entity
     {
-        public Guid UserId { get; set; }
+        public AppUser User { get; set; }
         public string Code { get; set; }
 
-        public AppUserTwoFactor(Guid userId, string code)
+        public AppUserTwoFactor(AppUser user, string code)
         {
-            UserId = userId;
+            User = user;
             Code = code;
         }
     }

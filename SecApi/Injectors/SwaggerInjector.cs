@@ -11,9 +11,9 @@ namespace SecApi.Injectors
             {
                 options.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title = "ExpansesApi",
+                    Title = "SEC API",
                     Version = "v1",
-                    Description = "API for organizing your expanses"
+                    Description = "API for Security"
                 });
 
                 options.ResolveConflictingActions(x => x.First());

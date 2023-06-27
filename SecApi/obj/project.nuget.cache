@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "iqVozoICEi1WxFgw/sF4cnpyt04t9c8En+1rqQSpR5jHQ6UtJXsTLsGz/BqjF+rx3T5Qf7CKW4i7X7S68DSfbQ==",
+  "dgSpecHash": "LQyPHYL0OXkcv5Ojy8v/wWMkaJAi2jIbtt/r4FQ4wZ6tXg+n8YHQ6uziyiuU4N00Q+ZwejWEdPHJaWRv/o8vEw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Projects\\API\\SecApi\\SecApi\\SecApi.csproj",
+  "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Projects\\SecApi\\SecApi\\SecApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\guilh\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",

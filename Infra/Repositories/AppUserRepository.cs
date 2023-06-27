@@ -43,7 +43,7 @@ namespace Infra.Repositories
             {
                 throw new UnauthorizedException("Email or Password was invalid");
             }
-            var response = new LoginDto(existUser.Id);
+            var response = new LoginDto(existUser);
 
             if (existUser.TwoFactor)
             {
@@ -51,9 +51,20 @@ namespace Infra.Repositories
                 return response;
             }
 
-            var token = JwtUtils.GenerateToken(_configuration);
+            var token = JwtUtils.GenerateToken(_configuration,existUser);
             response.Token = token;
             return response;
+        }
+
+        public async Task UpdatePasswordAsync(string newPassword,string email)
+        {
+            var existUser = await GetByEmailAsync(email);
+            if (existUser == null)
+            {
+                throw new NotFoundException($"Not found any user with this email - {email}");
+            }
+            existUser.Password = PasswordServices.EncryptPassword(newPassword);
+            await SaveAsync();
         }
     }
 }

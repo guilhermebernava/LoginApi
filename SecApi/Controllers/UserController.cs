@@ -1,5 +1,6 @@
 using Infra.Commands.User;
 using Infra.Mediator;
+using Infra.Utils;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -24,6 +25,21 @@ namespace SecApi.Controllers
         {
             var result = await _mediatorQuery.SendQuery(new UserTwoFactorQuery(code));
             return Ok(result);
+        }
+
+        [HttpPut]
+        [Authorize]
+        [Route("UpdatePassword")]
+        public async Task<IActionResult> Update([FromBody] string newPassword)
+        {
+            var email = RequestUtils.GetEmailFromJWT(Request.Headers);
+            var result = await _mediatorCommand.SendCommand(new UserPasswordUpdateCommand() { Email = email, NewPassword = newPassword });
+
+            if (result.Sucess)
+            {
+                return Ok("Change password with success!");
+            }
+            return BadRequest();
         }
 
 
@@ -54,8 +70,8 @@ namespace SecApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetUserByEmail")]
         [Authorize]
+        [Route("GetUserByEmail")]
         public async Task<IActionResult> GetUserByEmail([FromQuery] UserGetByEmailQuery query)
         {
             var result = await _mediatorQuery.SendQuery(query);

@@ -1,5 +1,4 @@
-﻿using Domain.Entities;
-using Domain.Redis;
+﻿using Domain.Redis;
 using Domain.Repositories;
 using Infra.Redis;
 using Infra.Repositories;

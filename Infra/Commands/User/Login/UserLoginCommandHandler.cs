@@ -31,8 +31,8 @@ namespace Infra.Commands.User
 
             if (dto.Code)
             {
-                var code = await _twoFactorRedisRepository.GenerateCode(dto.UserId);
-                SendEmailUtils.SendEmail(request.Email, _configuration["URLTwoFactor"] + "?code=" + code,_configuration);
+                var code = await _twoFactorRedisRepository.GenerateCode(dto.User);
+                SendEmailUtils.SendEmail(request.Email,code,_configuration);
                 return new ResponseDto("Email sent with success, check your email");
             }
             return new ResponseDto(dto.Token);
