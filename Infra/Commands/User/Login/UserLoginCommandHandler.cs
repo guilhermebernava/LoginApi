@@ -1,6 +1,7 @@
 ﻿using Domain.Redis;
 using Domain.Repositories;
 using Infra.Mediator.Classes;
+using Infra.Utils;
 using MediatR;
 using Microsoft.Extensions.Configuration;
 
@@ -31,7 +32,8 @@ namespace Infra.Commands.User
             if (dto.Code)
             {
                 var code = await _twoFactorRedisRepository.GenerateCode(dto.UserId);
-                return new ResponseDto(_configuration["URLTwoFactor"] + "?code=" + code);
+                SendEmailUtils.SendEmail(request.Email, _configuration["URLTwoFactor"] + "?code=" + code,_configuration);
+                return new ResponseDto("Email sent with success, check your email");
             }
             return new ResponseDto(dto.Token);
         }

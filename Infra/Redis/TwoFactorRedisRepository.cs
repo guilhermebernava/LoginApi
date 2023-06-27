@@ -24,7 +24,7 @@ namespace Infra.Redis
             {
                 var code = Convert.ToBase64String(Guid.NewGuid().ToByteArray());
                 await Add(code, new AppUserTwoFactor(userId, code));
-                return JwtUtils.GenerateToken(_configuration);
+                return code;
             }
             catch (Exception ex)
             {

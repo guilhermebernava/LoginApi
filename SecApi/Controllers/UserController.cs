@@ -22,7 +22,7 @@ namespace SecApi.Controllers
         [Route("TwoFactor")]
         public async Task<IActionResult> TwoFactor([FromQuery] string code)
         {
-            var result = await _mediatorQuery.SendQuery(new UserTwoFactorQuery() { Code = code });
+            var result = await _mediatorQuery.SendQuery(new UserTwoFactorQuery(code));
             return Ok(result);
         }
 

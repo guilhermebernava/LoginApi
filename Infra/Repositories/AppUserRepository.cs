@@ -45,7 +45,6 @@ namespace Infra.Repositories
             }
             var response = new LoginDto(existUser.Id);
 
-
             if (existUser.TwoFactor)
             {
                 response.Code = true;
