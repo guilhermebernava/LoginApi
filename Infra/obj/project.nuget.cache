@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "x9C+84PBQsiN5yfvdJ60VWgWXHUVsCRtEAvwYjdu2jl1ONj/7YjBFxoPvmx+oGzDaIIdhB2pX77lWKg9RXRH4Q==",
+  "dgSpecHash": "rlt0GKH57+G6GvQmLKUu4YbC5n4fWXtMQqcroMSU466yOCXKUJbw0DTT75907pzADqa93HmSRs0EY3jpUDidoQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Projects\\SecApi\\Infra\\Infra.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\guilh\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\mediatr\\12.0.1\\mediatr.12.0.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\mediatr.contracts\\2.0.1\\mediatr.contracts.2.0.1.nupkg.sha512",
     "C:\\Users\\guilh\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.18\\microsoft.aspnetcore.authentication.jwtbearer.6.0.18.nupkg.sha512",

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "aEafFJOm05zcNvvRcQ0HR+IB5U+w9pjQRHNFWfPepN637XODrDcQKC2/NqZXyrd5bhrrT4Vw/5i3YraU98v+9Q==",
+  "dgSpecHash": "3zpEhqUIJZtxBRXvHsy9OQoaMSZLFSqnL2GdYLWhBktCuOpw1INdSsu2ubW5iUoS4t767xjzYRqZbKkYpEx4pA==",
   "success": true,
   "projectFilePath": "C:\\Users\\guilh\\OneDrive\\Documentos\\Projects\\SecApi\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\guilh\\.nuget\\packages\\fluentvalidation\\11.5.2\\fluentvalidation.11.5.2.nupkg.sha512"
+  ],
   "logs": []
 }

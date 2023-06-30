@@ -114,3 +114,5 @@ C:\Users\guilh\OneDrive\Documentos\Projects\SecApi\SecApi\obj\Debug\net6.0\refin
 C:\Users\guilh\OneDrive\Documentos\Projects\SecApi\SecApi\obj\Debug\net6.0\SecApi.pdb
 C:\Users\guilh\OneDrive\Documentos\Projects\SecApi\SecApi\obj\Debug\net6.0\SecApi.genruntimeconfig.cache
 C:\Users\guilh\OneDrive\Documentos\Projects\SecApi\SecApi\obj\Debug\net6.0\ref\SecApi.dll
+C:\Users\guilh\OneDrive\Documentos\Projects\SecApi\SecApi\bin\Debug\net6.0\appsettingsExample.Development.json
+C:\Users\guilh\OneDrive\Documentos\Projects\SecApi\SecApi\bin\Debug\net6.0\appsettingsExample.json

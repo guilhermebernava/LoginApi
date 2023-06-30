@@ -11,6 +11,8 @@ namespace Domain.Entities
         public string Password { get; set; }
         public string Name { get; set; } = "";
         public bool TwoFactor { get; set; }
+        public virtual ICollection<Expanse> Expanses { get; set; }
+        public virtual ICollection<UserCategory> UserCategories { get; set; }
 
         public AppUser(string email, string password, bool twoFactor)
         {

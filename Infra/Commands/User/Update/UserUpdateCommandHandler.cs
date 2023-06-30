@@ -1,5 +1,4 @@
 ﻿using Domain.Repositories;
-using Infra.Exceptions;
 using Infra.Mediator.Classes;
 using MediatR;
 

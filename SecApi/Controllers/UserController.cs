@@ -29,11 +29,25 @@ namespace SecApi.Controllers
 
         [HttpPut]
         [Authorize]
+        [Route("UpdateUser")]
+        public async Task<IActionResult> Update([FromBody] UserUpdateCommand command)
+        {
+            var result = await _mediatorCommand.SendCommand(command);
+
+            if (result.Sucess)
+            {
+                return Ok("Updated user with success!");
+            }
+            return BadRequest();
+        }
+
+        [HttpPut]
+        [Authorize]
         [Route("UpdatePassword")]
         public async Task<IActionResult> Update([FromBody] string newPassword)
         {
             var email = RequestUtils.GetEmailFromJWT(Request.Headers);
-            var result = await _mediatorCommand.SendCommand(new UserPasswordUpdateCommand() { Email = email, NewPassword = newPassword });
+            var result = await _mediatorCommand.SendCommand(new UserPasswordUpdateCommand(newPassword,email));
 
             if (result.Sucess)
             {
