@@ -19,6 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Commands\Expanse\" />
+    <Folder Include="Commands\Category\" />
+    <Folder Include="Queries\Expanse\" />
+    <Folder Include="Queries\Category\" />
     <Folder Include="Utils\Interfaces\" />
   </ItemGroup>
 
