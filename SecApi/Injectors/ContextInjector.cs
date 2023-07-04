@@ -10,7 +10,7 @@ namespace SecApi.Injectors
             services.AddDbContext<AppDbContext>(options =>
             {
                 options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName));
-            });
+            },ServiceLifetime.Singleton);
         }
     }
 }

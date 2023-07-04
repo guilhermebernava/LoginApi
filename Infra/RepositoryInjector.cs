@@ -12,6 +12,9 @@ namespace Infra
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ITwoFactorRedisRepository, TwoFactorRedisRepository>();
+            services.AddScoped<IExpanseRepository, ExpanseRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IUserCategoryRepository, UserCategoryRepository>();
         }
     }
 }

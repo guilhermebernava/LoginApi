@@ -14,9 +14,10 @@ namespace Infra
         {
             services.AddScoped<IMediatorCommand, MediatorCommandHandler>();
             services.AddScoped<IMediatorQuery, MediatorQueryHandler>();
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCreateCommand>());
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserUpdateCommand>());
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserDeleteCommand>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCreateCommandHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserUpdateCommandHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserDeleteCommandHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCategoriesCommandHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserGetAllQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserGetByEmailQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserTwoFactorQueryHandler>());

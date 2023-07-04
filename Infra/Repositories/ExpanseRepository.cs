@@ -27,19 +27,22 @@ namespace Infra.Repositories
                                         select category).ToListAsync();
 
 
-                Parallel.ForEach(expanses, expanse =>
+                await Task.Run(() =>
                 {
-                    var existCategory = categories.FirstOrDefault(_ => _.Id == expanse.CategoryId);
-                    if (existCategory == null) throw new DbException($"Not found any User Category for this EXPANSE - {expanse.Id}");
-
-                    var existCategorySpend = categorySpend.FirstOrDefault(_ => _.CategoryName == existCategory.Name);
-                    if (existCategorySpend == null)
+                    foreach (var expanse in expanses)
                     {
-                        categorySpend.Add(new CategorySpend(existCategory.Name, expanse.Value));
-                        return;
-                    }
+                        var existCategory = categories.FirstOrDefault(_ => _.Id == expanse.CategoryId);
+                        if (existCategory == null) throw new DbException($"Not found any User Category for this EXPANSE - {expanse.Id}");
 
-                    existCategorySpend.TotalSpend += expanse.Value;
+                        var existCategorySpend = categorySpend.FirstOrDefault(_ => _.CategoryName == existCategory.Name);
+                        if (existCategorySpend == null)
+                        {
+                            categorySpend.Add(new CategorySpend(existCategory.Name, expanse.Value));
+                            continue;
+                        }
+
+                        existCategorySpend.TotalSpend += expanse.Value;
+                    }
                 });
 
 

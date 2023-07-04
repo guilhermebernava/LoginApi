@@ -71,6 +71,19 @@ namespace SecApi.Controllers
         }
 
         [HttpPost]
+        [Route("UserCategories")]
+        public async Task<IActionResult> UserCategories(UserCategoriesCommand command)
+        {
+            var result = await _mediatorCommand.SendCommand(command);
+
+            if (result.Sucess)
+            {
+                return Ok("Created with success!");
+            }
+            return BadRequest();
+        }
+
+        [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login(UserLoginCommand command)
         {

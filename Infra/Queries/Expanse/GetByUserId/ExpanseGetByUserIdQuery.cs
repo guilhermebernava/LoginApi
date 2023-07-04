@@ -2,12 +2,8 @@
 
 namespace Infra.Commands.ExpanseQuery
 {
-    public class ExpanseGetByUserId : Request
+    public class ExpanseGetByUserIdQuery : Request
     {
-        public ExpanseGetByUserId(Guid userId)
-        {
-            UserId = userId;
-        }
 
         public Guid UserId { get; set; }
     }

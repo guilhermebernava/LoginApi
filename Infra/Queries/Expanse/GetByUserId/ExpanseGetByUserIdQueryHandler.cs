@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Infra.Commands.ExpanseQuery
 {
-    public class ExpanseGetByUserIdQueryHandler : IRequestHandler<ExpanseGetByUserId, ResponseDto>
+    public class ExpanseGetByUserIdQueryHandler : IRequestHandler<ExpanseGetByUserIdQuery, ResponseDto>
     {
         private IExpanseRepository _expanseRepository;
 
@@ -13,7 +13,7 @@ namespace Infra.Commands.ExpanseQuery
             _expanseRepository = expanseRepository;
         }
 
-        public async Task<ResponseDto> Handle(ExpanseGetByUserId request, CancellationToken cancellationToken)
+        public async Task<ResponseDto> Handle(ExpanseGetByUserIdQuery request, CancellationToken cancellationToken)
         {
             var list = await _expanseRepository.GetAllByUserId( request.UserId);
             return new ResponseDto(list);
