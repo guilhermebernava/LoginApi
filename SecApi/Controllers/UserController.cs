@@ -71,19 +71,6 @@ namespace SecApi.Controllers
         }
 
         [HttpPost]
-        [Route("UserCategories")]
-        public async Task<IActionResult> UserCategories(UserCategoriesCommand command)
-        {
-            var result = await _mediatorCommand.SendCommand(command);
-
-            if (result.Sucess)
-            {
-                return Ok("Created with success!");
-            }
-            return BadRequest();
-        }
-
-        [HttpPost]
         [Route("Login")]
         public async Task<IActionResult> Login(UserLoginCommand command)
         {
@@ -99,9 +86,9 @@ namespace SecApi.Controllers
         [HttpGet]
         [Authorize]
         [Route("GetUserByEmail")]
-        public async Task<IActionResult> GetUserByEmail([FromQuery] UserGetByEmailQuery query)
+        public async Task<IActionResult> GetUserByEmail([FromQuery] string  email)
         {
-            var result = await _mediatorQuery.SendQuery(query);
+            var result = await _mediatorQuery.SendQuery(new UserGetByEmailQuery(email));
 
             if (result.Sucess)
             {

@@ -59,9 +59,9 @@ namespace SecApi.Controllers
 
         [HttpGet]
         [Route("GetAllByUserId")]
-        public async Task<IActionResult> GetByUserId([FromQuery] ExpanseGetByUserIdQuery query)
+        public async Task<IActionResult> GetByUserId([FromQuery] Guid userId)
         {
-            var result = await _mediatorQuery.SendQuery(query);
+            var result = await _mediatorQuery.SendQuery(new ExpanseGetByUserIdQuery(userId));
 
             if (result.Sucess)
             {
@@ -72,9 +72,9 @@ namespace SecApi.Controllers
 
         [HttpGet]
         [Route("GetAllByMonth")]
-        public async Task<IActionResult> GetByMonth([FromQuery] ExpanseGetByMonthQuery query)
+        public async Task<IActionResult> GetByMonth([FromQuery] Guid userId, DateTime date)
         {
-            var result = await _mediatorQuery.SendQuery(query);
+            var result = await _mediatorQuery.SendQuery(new ExpanseGetByMonthQuery(date,userId));
 
             if (result.Sucess)
             {
@@ -85,9 +85,9 @@ namespace SecApi.Controllers
 
         [HttpGet]
         [Route("GetAllByCategoryId")]
-        public async Task<IActionResult> GetByCategoryId([FromQuery] ExpanseGetByCategoryIdQuery query)
+        public async Task<IActionResult> GetByCategoryId([FromQuery] Guid userId, Guid categoryId)
         {
-            var result = await _mediatorQuery.SendQuery(query);
+            var result = await _mediatorQuery.SendQuery(new ExpanseGetByCategoryIdQuery(categoryId, userId));
 
             if (result.Sucess)
             {
@@ -98,9 +98,9 @@ namespace SecApi.Controllers
 
         [HttpGet]
         [Route("GenerateMonthSummary")]
-        public async Task<IActionResult> GenerateMonthSummary([FromQuery] ExpanseGenerateMonthSummaryQuery query)
+        public async Task<IActionResult> GenerateMonthSummary([FromQuery] Guid userId)
         {
-            var result = await _mediatorQuery.SendQuery(query);
+            var result = await _mediatorQuery.SendQuery(new ExpanseGenerateMonthSummaryQuery(userId));
 
             if (result.Sucess)
             {

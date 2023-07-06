@@ -6,5 +6,6 @@ namespace Domain.Repositories
     {
         public Task<bool> ExistCategoryByName(string categoryName);
         public Task<List<Category>> GetAllByUserCategories(List<UserCategory> userCategories);
+        public Task<List<Category>> GetAllCoreCategories();
     }
 }

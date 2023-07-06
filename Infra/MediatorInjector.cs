@@ -3,6 +3,7 @@ using Infra.Commands.CategoryQuery;
 using Infra.Commands.ExpanseCommands;
 using Infra.Commands.ExpanseQuery;
 using Infra.Commands.User;
+using Infra.Commands.UserCategoryCommand;
 using Infra.Mediator;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,7 +18,6 @@ namespace Infra
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCreateCommandHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserUpdateCommandHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserDeleteCommandHandler>());
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCategoriesCommandHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserGetAllQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserGetByEmailQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserTwoFactorQueryHandler>());
@@ -33,6 +33,10 @@ namespace Infra
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CategoryGetAllQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CategoryCreateCommandHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<CategoryDeleteCommandHandler>());
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCategoryGetByUserIdQueryHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCategoryCreateCommandHandler>());
+
         }
     }
 }

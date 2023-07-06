@@ -9,7 +9,7 @@ namespace Domain.Entities
     {
         public string Email { get; set; }
         public string Password { get; set; }
-        public string Name { get; set; } = "";
+        public string? Name { get; set; }
         public bool TwoFactor { get; set; }
         [JsonIgnore]
         public virtual ICollection<Expanse> Expanses { get; set; }
@@ -25,7 +25,7 @@ namespace Domain.Entities
         }
 
         [JsonConstructor]
-        public AppUser(string email, string password,bool twoFactor,string name)
+        public AppUser(string email, string password,bool twoFactor,string? name)
         {
             CheckEmail(email);
             Email = email;

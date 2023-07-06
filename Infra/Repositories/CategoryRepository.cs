@@ -51,5 +51,18 @@ namespace Infra.Repositories
                 throw new DbException(e.Message);
             }
         }
+
+        public async Task<List<Category>> GetAllCoreCategories()
+        {
+            try
+            {
+                var list = await _dbSet.Where(_ => _.IsCore == true).ToListAsync();
+                return list;
+            }
+            catch (Exception e)
+            {
+                throw new DbException(e.Message);
+            }
+        }
     }
 }
