@@ -1,6 +1,7 @@
 using Infra.Commands.CategoryCommands;
 using Infra.Commands.CategoryQuery;
 using Infra.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SecApi.Controllers
@@ -19,6 +20,7 @@ namespace SecApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Create")]
         public async Task<IActionResult> Create(CategoryCreateCommand command)
         {
@@ -32,6 +34,7 @@ namespace SecApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("Delete")]
         public async Task<IActionResult> Delete(CategoryDeleteCommand command)
         {
@@ -45,6 +48,7 @@ namespace SecApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("GetAll")]
         public async Task<IActionResult> Get()
         {

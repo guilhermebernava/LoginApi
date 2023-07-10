@@ -4,6 +4,8 @@ using Infra.Commands.ExpanseCommands;
 using Infra.Commands.ExpanseQuery;
 using Infra.Commands.User;
 using Infra.Commands.UserCategoryCommand;
+using Infra.Commands.UserWalletCommand;
+using Infra.Commands.UserWalletQuery;
 using Infra.Mediator;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,6 +39,9 @@ namespace Infra
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCategoryGetByUserIdQueryHandler>());
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserCategoryCreateCommandHandler>());
 
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserWalletCreateCommandHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserWalletUpdateCommandHandler>());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<UserWalletGetByUserIdQueryHandler>());
         }
     }
 }

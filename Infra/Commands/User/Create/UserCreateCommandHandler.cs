@@ -30,7 +30,7 @@ namespace Infra.Commands.User
                 throw new NotFoundException("Not found saved user");
             }
 
-            var categories = await _categoryRepository.GetAllCoreCategories();
+            var categories = await _categoryRepository.GetAllCoreCategoriesAsync();
 
             Parallel.ForEach(categories, async category => {
                 await _userCategoryRepository.AddAsync(new UserCategory(savedUser.Id, category.Id));

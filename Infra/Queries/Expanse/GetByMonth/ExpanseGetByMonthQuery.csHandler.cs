@@ -15,7 +15,7 @@ namespace Infra.Commands.ExpanseQuery
 
         public async Task<ResponseDto> Handle(ExpanseGetByMonthQuery request, CancellationToken cancellationToken)
         {
-            var list = await _expanseRepository.GetByMonth(request.Date, request.UserId);
+            var list = await _expanseRepository.GetByMonthAsync(request.Date, request.UserId);
             return new ResponseDto(list);
         }
     }

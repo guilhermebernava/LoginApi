@@ -1,6 +1,7 @@
 using Infra.Commands.UserCategoryCommand;
 using Infra.Commands.UserCategoryQuery;
 using Infra.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SecApi.Controllers
@@ -19,6 +20,7 @@ namespace SecApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Create")]
         public async Task<IActionResult> Create(UserCategoryCreateCommand command)
         {

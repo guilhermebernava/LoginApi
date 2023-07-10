@@ -13,7 +13,7 @@ namespace Infra.Repositories
         {
         }
 
-        public async Task<ExpanseMonthSummaryDto> GenerateMonthSummary(Guid userId)
+        public async Task<ExpanseMonthSummaryDto> GenerateMonthSummaryAsync(Guid userId)
         {
             try
             {
@@ -45,7 +45,6 @@ namespace Infra.Repositories
                     }
                 });
 
-
                 var result = new ExpanseMonthSummaryDto(expanses, categorySpend, totalSpend);
                 return result;
             }
@@ -55,7 +54,7 @@ namespace Infra.Repositories
             }
         }
 
-        public async Task<List<Expanse>> GetAllByUserId(Guid userId)
+        public async Task<List<Expanse>> GetAllByUserIdAsync(Guid userId)
         {
             try
             {
@@ -68,7 +67,7 @@ namespace Infra.Repositories
             }
         }
 
-        public async Task<List<Expanse>> GetByCategoryId(Guid categoryId, Guid userId)
+        public async Task<List<Expanse>> GetByCategoryIdAsync(Guid categoryId, Guid userId)
         {
             try
             {
@@ -81,7 +80,7 @@ namespace Infra.Repositories
             }
         }
 
-        public async Task<List<Expanse>> GetByMonth(DateTime date, Guid userId)
+        public async Task<List<Expanse>> GetByMonthAsync(DateTime date, Guid userId)
         {
             try
             {

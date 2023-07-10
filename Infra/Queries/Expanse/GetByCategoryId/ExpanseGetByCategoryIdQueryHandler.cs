@@ -15,7 +15,7 @@ namespace Infra.Commands.ExpanseQuery
 
         public async Task<ResponseDto> Handle(ExpanseGetByCategoryIdQuery request, CancellationToken cancellationToken)
         {
-            var list = await _expanseRepository.GetByCategoryId(request.CategoryId,request.UserId);
+            var list = await _expanseRepository.GetByCategoryIdAsync(request.CategoryId,request.UserId);
             return new ResponseDto(list);
         }
     }

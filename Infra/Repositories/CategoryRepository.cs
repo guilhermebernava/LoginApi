@@ -12,7 +12,7 @@ namespace Infra.Repositories
         {
         }
 
-        public async Task<bool> ExistCategoryByName(string categoryName)
+        public async Task<bool> ExistCategoryByNameAsync(string categoryName)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace Infra.Repositories
             }
         }
 
-        public async Task<List<Category>> GetAllByUserCategories(List<UserCategory> userCategories)
+        public async Task<List<Category>> GetAllByUserCategoriesAsync(List<UserCategory> userCategories)
         {
             try
             {
@@ -52,7 +52,7 @@ namespace Infra.Repositories
             }
         }
 
-        public async Task<List<Category>> GetAllCoreCategories()
+        public async Task<List<Category>> GetAllCoreCategoriesAsync()
         {
             try
             {

@@ -14,6 +14,8 @@ namespace Domain.Entities
         [JsonIgnore]
         public virtual ICollection<Expanse> Expanses { get; set; }
         [JsonIgnore]
+        public virtual UserWallet UserWallet { get; set; }
+        [JsonIgnore]
         public virtual ICollection<UserCategory> UserCategories { get; set; }
 
         public AppUser(string email, string password, bool twoFactor)

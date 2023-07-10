@@ -15,6 +15,7 @@ namespace Infra
             services.AddScoped<IExpanseRepository, ExpanseRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IUserCategoryRepository, UserCategoryRepository>();
+            services.AddScoped<IUserWalletRepository, UserWalletRepository>();
         }
     }
 }

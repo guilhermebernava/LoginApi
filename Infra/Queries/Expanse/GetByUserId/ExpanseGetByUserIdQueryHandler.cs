@@ -15,7 +15,7 @@ namespace Infra.Commands.ExpanseQuery
 
         public async Task<ResponseDto> Handle(ExpanseGetByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var list = await _expanseRepository.GetAllByUserId( request.UserId);
+            var list = await _expanseRepository.GetAllByUserIdAsync( request.UserId);
             return new ResponseDto(list);
         }
     }

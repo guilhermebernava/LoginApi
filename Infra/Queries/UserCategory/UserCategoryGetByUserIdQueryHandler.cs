@@ -16,7 +16,7 @@ namespace Infra.Commands.CategoryQuery
 
         public async Task<ResponseDto> Handle(UserCategoryGetByUserIdQuery request, CancellationToken cancellationToken)
         {
-            var list = await _userCategoryRepository.GetAllByUserId(request.UserId);
+            var list = await _userCategoryRepository.GetAllByUserIdAsync(request.UserId);
             return new ResponseDto(list);
         }
     }

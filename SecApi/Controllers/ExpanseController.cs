@@ -1,6 +1,7 @@
 using Infra.Commands.ExpanseCommands;
 using Infra.Commands.ExpanseQuery;
 using Infra.Mediator;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SecApi.Controllers
@@ -19,6 +20,7 @@ namespace SecApi.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Create")]
         public async Task<IActionResult> Create(ExpanseCreateCommand command)
         {
@@ -32,6 +34,7 @@ namespace SecApi.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         [Route("Update")]
         public async Task<IActionResult> Update(ExpanseUpdateCommand command)
         {
@@ -45,6 +48,7 @@ namespace SecApi.Controllers
         }
 
         [HttpDelete]
+        [Authorize]
         [Route("Delete")]
         public async Task<IActionResult> Delete(ExpanseDeleteCommand command)
         {
@@ -58,6 +62,7 @@ namespace SecApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("GetAllByUserId")]
         public async Task<IActionResult> GetByUserId([FromQuery] Guid userId)
         {
@@ -71,6 +76,7 @@ namespace SecApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("GetAllByMonth")]
         public async Task<IActionResult> GetByMonth([FromQuery] Guid userId, DateTime date)
         {
@@ -84,6 +90,7 @@ namespace SecApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("GetAllByCategoryId")]
         public async Task<IActionResult> GetByCategoryId([FromQuery] Guid userId, Guid categoryId)
         {
@@ -97,6 +104,7 @@ namespace SecApi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("GenerateMonthSummary")]
         public async Task<IActionResult> GenerateMonthSummary([FromQuery] Guid userId)
         {

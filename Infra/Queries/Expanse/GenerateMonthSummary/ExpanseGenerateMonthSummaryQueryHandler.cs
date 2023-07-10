@@ -15,7 +15,7 @@ namespace Infra.Commands.ExpanseQuery
 
         public async Task<ResponseDto> Handle(ExpanseGenerateMonthSummaryQuery request, CancellationToken cancellationToken)
         {
-            var list = await _expanseRepository.GenerateMonthSummary(request.UserId);
+            var list = await _expanseRepository.GenerateMonthSummaryAsync(request.UserId);
             return new ResponseDto(list);
         }
     }

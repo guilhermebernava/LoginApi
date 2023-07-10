@@ -11,5 +11,6 @@ namespace Infra.Context
         public DbSet<Expanse> Expanses { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<UserCategory> UserCategories { get; set; }
+        public DbSet<UserWallet> UserWallets { get; set; }
     }
 }

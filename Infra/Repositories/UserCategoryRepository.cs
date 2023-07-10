@@ -12,7 +12,7 @@ namespace Infra.Repositories
         {
         }
 
-        public async Task<List<UserCategory>> GetAllByUserId(Guid userId)
+        public async Task<List<UserCategory>> GetAllByUserIdAsync(Guid userId)
         {
             try
             {

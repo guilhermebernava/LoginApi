@@ -36,7 +36,6 @@ namespace Infra.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
@@ -130,6 +129,32 @@ namespace Infra.Migrations
                     b.ToTable("UserCategories");
                 });
 
+            modelBuilder.Entity("Domain.Entities.UserWallet", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("boolean");
+
+                    b.Property<double>("MonthlyEarning")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("MonthlyExpanse")
+                        .HasColumnType("double precision");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId")
+                        .IsUnique();
+
+                    b.ToTable("UserWallets");
+                });
+
             modelBuilder.Entity("Domain.Entities.Expanse", b =>
                 {
                     b.HasOne("Domain.Entities.Category", "Category")
@@ -168,11 +193,25 @@ namespace Infra.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entities.UserWallet", b =>
+                {
+                    b.HasOne("Domain.Entities.AppUser", "User")
+                        .WithOne("UserWallet")
+                        .HasForeignKey("Domain.Entities.UserWallet", "UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Entities.AppUser", b =>
                 {
                     b.Navigation("Expanses");
 
                     b.Navigation("UserCategories");
+
+                    b.Navigation("UserWallet")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Domain.Entities.Category", b =>
