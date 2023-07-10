@@ -8,6 +8,5 @@ namespace Domain.Repositories
         public Task<List<Expanse>> GetByMonthAsync(DateTime date, Guid userId);
         public Task<List<Expanse>> GetByCategoryIdAsync(Guid categoryId, Guid userId);
         public Task<List<Expanse>> GetAllByUserIdAsync(Guid userId);
-        public Task<ExpanseMonthSummaryDto> GenerateMonthSummaryAsync(Guid userId);
     }
 }

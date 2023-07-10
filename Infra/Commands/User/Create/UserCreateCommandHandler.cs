@@ -10,13 +10,15 @@ namespace Infra.Commands.User
     {
         private IUserRepository _userRepository;
         private IUserCategoryRepository _userCategoryRepository;
+        private IUserWalletRepository _userWalletRepository;
         private ICategoryRepository _categoryRepository;
 
-        public UserCreateCommandHandler(IUserRepository userRepository, IUserCategoryRepository userCategoryRepository,ICategoryRepository categoryRepository)
+        public UserCreateCommandHandler(IUserRepository userRepository, IUserCategoryRepository userCategoryRepository,ICategoryRepository categoryRepository, IUserWalletRepository userWalletRepository)
         {
             _userRepository = userRepository;
             _userCategoryRepository = userCategoryRepository;
             _categoryRepository = categoryRepository;
+            _userWalletRepository = userWalletRepository;
         }
 
         public async Task<ResponseDto> Handle(UserCreateCommand request, CancellationToken cancellationToken)
@@ -30,6 +32,7 @@ namespace Infra.Commands.User
                 throw new NotFoundException("Not found saved user");
             }
 
+            await _userWalletRepository.AddAsync(new UserWallet(request.MonthlyEarning,request.MonthlyExpanses,savedUser.Id));
             var categories = await _categoryRepository.GetAllCoreCategoriesAsync();
 
             Parallel.ForEach(categories, async category => {
