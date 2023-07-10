@@ -3,11 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecApi", "SecApi\SecApi.csproj", "{3262FF62-CC7E-454C-906A-7B6D31F5F932}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SecApi", "SecApi\SecApi.csproj", "{3262FF62-CC7E-454C-906A-7B6D31F5F932}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{82F060B6-CF22-41D5-B58B-AF330EA3BE5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{82F060B6-CF22-41D5-B58B-AF330EA3BE5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infra", "Infra\Infra.csproj", "{6761D90B-41E4-40B1-8380-4C798B76E4B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infra", "Infra\Infra.csproj", "{6761D90B-41E4-40B1-8380-4C798B76E4B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DomainProjects", "DomainProjects", "{56975C6C-123B-4C76-9457-7263955C5403}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InfraProjects", "InfraProjects", "{DD12136A-38CF-4399-84FD-68999818B726}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApiProjects", "WebApiProjects", "{0827C7E3-3648-41B8-9548-38C55877AFFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +36,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3262FF62-CC7E-454C-906A-7B6D31F5F932} = {0827C7E3-3648-41B8-9548-38C55877AFFF}
+		{82F060B6-CF22-41D5-B58B-AF330EA3BE5D} = {56975C6C-123B-4C76-9457-7263955C5403}
+		{6761D90B-41E4-40B1-8380-4C798B76E4B3} = {DD12136A-38CF-4399-84FD-68999818B726}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {01C31B4F-5FF4-4A65-A863-89B803C98D5A}
