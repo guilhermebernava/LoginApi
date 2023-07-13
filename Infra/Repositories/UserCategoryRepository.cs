@@ -16,7 +16,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var userCategories = await _dbSet.Where(_ => _.UserId == userId).ToListAsync();
+                var userCategories = await _dbSet.Where(_ => _.UserId == userId).AsNoTracking().ToListAsync();
                 return userCategories;
             }
             catch (Exception e)

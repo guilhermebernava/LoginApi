@@ -21,7 +21,7 @@ namespace Infra.Repositories
 
         public async Task<AppUser> GetByEmailAsync(string email)
         {
-            var user = await _dbSet.FirstOrDefaultAsync(x => x.Email == email);
+            var user = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Email == email);
 
             if (user == null)
             {

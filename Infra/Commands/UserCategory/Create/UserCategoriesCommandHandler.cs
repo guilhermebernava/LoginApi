@@ -1,6 +1,5 @@
 ﻿using Domain.Entities;
 using Domain.Repositories;
-using Infra.Exceptions;
 using Infra.Mediator.Classes;
 using MediatR;
 
@@ -19,18 +18,22 @@ namespace Infra.Commands.UserCategoryCommand
 
         public async Task<ResponseDto> Handle(UserCategoryCreateCommand request, CancellationToken cancellationToken)
         {
-            var categories = await _categoryRepository.GetAllAsync();
+            var existCategory = await _categoryRepository.GetCategoryByNameAsync(request.Name);
 
-            if (categories == null)
+            if (existCategory == null)
             {
-                throw new NotFoundException("Not found any categories");
+                await _categoryRepository.AddAsync(new Category(request.Name, false));
+                var category = await _categoryRepository.GetCategoryByNameAsync(request.Name);
+
+                var entity = new UserCategory(request.UserId, category!.Id);
+                await _userCategoryRepository.AddAsync(entity);
+            }
+            else
+            {
+                var entity = new UserCategory(request.UserId, existCategory.Id);
+                await _userCategoryRepository.AddAsync(entity);
             }
 
-            Parallel.ForEach(categories, async category =>
-            {
-                var entity = new UserCategory(request.UserId, category.Id);
-                await _userCategoryRepository.AddAsync(entity);
-            });
 
             return new ResponseDto();
         }

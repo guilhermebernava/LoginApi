@@ -13,7 +13,9 @@ namespace Domain.Services
 
         public static bool VerifyPassword(string password, string hashPassword)
         {
-            if (EncryptPassword(password) == DecryptPassword(hashPassword))
+            string encryptedPassword = EncryptPassword(password);
+            string decryptedPassword = DecryptPassword(hashPassword);
+            if (encryptedPassword == decryptedPassword)
             {
                 return true;
             }

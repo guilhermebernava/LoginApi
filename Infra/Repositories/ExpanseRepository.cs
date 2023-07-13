@@ -17,7 +17,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var expanses = await _dbSet.Where(_ => _.UserId == userId).ToListAsync();
+                var expanses = await _dbSet.Where(_ => _.UserId == userId).AsNoTracking().ToListAsync();
                 return expanses;
             }
             catch (Exception e)
@@ -30,7 +30,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var expanses = await _dbSet.Where(_ => _.CategoryId == categoryId && _.UserId == userId).ToListAsync();
+                var expanses = await _dbSet.Where(_ => _.CategoryId == categoryId && _.UserId == userId).AsNoTracking().ToListAsync();
                 return expanses;
             }
             catch (Exception e)
@@ -43,7 +43,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var expanses = await _dbSet.Where(_ => _.Date.Month == date.Month && _.UserId == userId).ToListAsync();
+                var expanses = await _dbSet.Where(_ => _.Date.Month == date.Month && _.UserId == userId).AsNoTracking().ToListAsync();
                 return expanses;
             }
             catch (Exception e)

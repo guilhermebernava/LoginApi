@@ -12,12 +12,12 @@ namespace Infra.Repositories
         {
         }
 
-        public async Task<bool> ExistCategoryByNameAsync(string categoryName)
+        public async Task<Category?> GetCategoryByNameAsync(string categoryName)
         {
             try
             {
                 var exist = await _dbSet.FirstOrDefaultAsync(_ => _.Name == categoryName.ToUpper());
-                return exist != null;
+                return exist;
             }
             catch (Exception e)
             {

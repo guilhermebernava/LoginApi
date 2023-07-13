@@ -16,7 +16,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var entity = await _dbSet.FirstOrDefaultAsync(_ => _.UserId == userId);
+                var entity = await _dbSet.AsNoTracking().FirstOrDefaultAsync(_ => _.UserId == userId);
                 if (entity == null)
                 {
                     throw new NotFoundException($"Not found any USER WALLET with this USER ID {userId}");

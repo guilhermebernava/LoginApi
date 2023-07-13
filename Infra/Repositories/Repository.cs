@@ -64,7 +64,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var list = await _dbSet.ToListAsync();
+                var list = await _dbSet.AsNoTracking().ToListAsync();
                 return list;
             }
             catch (Exception ex)
@@ -77,7 +77,7 @@ namespace Infra.Repositories
         {
             try
             {
-                var entity = await _dbSet.FirstOrDefaultAsync(x => x.Id == Id);
+                var entity = await _dbSet.AsNoTracking().FirstOrDefaultAsync(x => x.Id == Id);
 
                 if (entity == null)
                 {
